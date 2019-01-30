@@ -11,6 +11,6 @@ public class Casting {
         System.out.println(varDouble);
         varInt=(int) varDouble;
         System.out.println(varInt);
-        
+
     }
 }
