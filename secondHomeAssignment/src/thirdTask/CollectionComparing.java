@@ -16,8 +16,7 @@ public class CollectionComparing {
         set.add("lemon");
         set.add("kiwi");
         System.out.println("***Initial set***");
-        for (String s:set
-             ) {
+        for (String s : set) {
             System.out.println(s);
         }
         LinkedList<String> list = new LinkedList<>();
@@ -33,18 +32,18 @@ public class CollectionComparing {
         list.add("apricot");
         list.add("pineapple");
         System.out.println("***Initial list***");
-        for (String s: list
-             ) {
+        for (String s : list) {
             System.out.println(s);
         }
-        List <String> resultList = new ArrayList<>();
-        for (int i = 0; i < list.size(); i++) {
-            if(set.contains(list.get(i))){
-                resultList.add(list.get(i));
-            }
-        }
+//        List<String> resultList = new ArrayList<>();
+//        for (int i = 0; i < list.size(); i++) {
+//            if (set.contains(list.get(i))) {
+//                resultList.add(list.get(i));
+//            }
+//        }
+        list.retainAll(set);
         System.out.println("***Result list***");
-        for (String x : resultList) {
+        for (String x : list) {
             System.out.println(x);
         }
 
