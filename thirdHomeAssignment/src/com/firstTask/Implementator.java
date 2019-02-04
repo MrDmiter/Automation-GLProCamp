@@ -1,11 +1,21 @@
-package firstTask;
+package com.firstTask;
 
 public class Implementator implements Util {
+
+    /**
+     * Realization of the methods defined in the interface that we must override
+     */
     @Override
     public void printPhrase() {
         System.out.println("Phrase from Implementator class");
     }
 
+    /**
+     * Methods that we must override
+     *
+     * @param returnDayNameByNum
+     * @return name
+     */
     @Override
     public String returnDayNameByNum(int returnDayNameByNum) {
         String name;
@@ -37,30 +47,36 @@ public class Implementator implements Util {
         return name;
     }
 
+    /**
+     * Methods that we must override
+     *
+     * @param name
+     * @return dayNumber
+     */
     @Override
     public int returnDayNumByName(String name) {
         int dayNumber;
         switch (name.toLowerCase()) {
             case "monday":
-                dayNumber = 1;
+                dayNumber = EnumClass.DaysOfWeek.MONDAY.getDayNumber();
                 break;
             case "tuesday":
-                dayNumber = 2;
+                dayNumber = EnumClass.DaysOfWeek.TUESDAY.getDayNumber();
                 break;
             case "wednesday":
-                dayNumber = 3;
+                dayNumber = EnumClass.DaysOfWeek.WEDNESDAY.getDayNumber();
                 break;
             case "thursday":
-                dayNumber = 4;
+                dayNumber = EnumClass.DaysOfWeek.THURSDAY.getDayNumber();
                 break;
             case "friday":
-                dayNumber = 5;
+                dayNumber = EnumClass.DaysOfWeek.FRIDAY.getDayNumber();
                 break;
             case "saturday":
-                dayNumber = 6;
+                dayNumber = EnumClass.DaysOfWeek.SATURDAY.getDayNumber();
                 break;
             case "sunday":
-                dayNumber = 7;
+                dayNumber = EnumClass.DaysOfWeek.SUNDAY.getDayNumber();
                 break;
             default:
                 System.out.println("You should enter name of the day of week, e.g Monday/Tuesday/...");

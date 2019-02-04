@@ -1,24 +1,37 @@
-package firstTask;
+package com.firstTask;
 
-import java.util.ArrayList;
 
 public abstract class AbstractClass {
+
+
+    // class variable
     private int numOfMonth;
 
+    /**
+     * Constructor of the class
+     * @param numOfMonth
+     */
     AbstractClass(int numOfMonth) {
         this.numOfMonth = numOfMonth;
     }
 
-    AbstractClass() {
-
-    }
-
+    /**
+     * Abstract method
+     */
     abstract void printPhrase();
 
+    /**
+     * Enum, list of the months
+     */
     enum Months {
         JANUARY, FEBRUARY, MARCH, APRIL, MAY, JUNE, JULY, AUGUST, SEPTEMBER, OCTOBER, NOVEMBER, DECEMBER;
     }
 
+    /**
+     * Non-abstract method which return name of the month by its position within a year
+     * @param numOfMonth
+     * @return monthName
+     */
     String getMonthNameByNum(int numOfMonth) {
         String monthName;
         try {
