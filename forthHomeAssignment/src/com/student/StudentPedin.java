@@ -52,6 +52,9 @@ public class StudentPedin extends Student implements ParseFileInterface, WriteTo
                 System.out.println("All data is written to MSSQL DB");
                 closeConnectionToDB();
             }
+            else{
+                System.err.println("Attempt to write non-valid data to the DB");
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -63,7 +66,7 @@ public class StudentPedin extends Student implements ParseFileInterface, WriteTo
      * @throws IOException
      */
     public void openConnectionToDB() throws IOException {
-        String path = "F:\\MS_SQL-DB.txt";
+        String path = "src\\com\\files\\MS_SQL-DB.txt";
         fileWriter = new FileWriter(path);
         printWriter = new PrintWriter(fileWriter);
     }

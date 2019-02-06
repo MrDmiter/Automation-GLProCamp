@@ -40,7 +40,7 @@ public class Runner {
         studentMogilyanka.writeToDb(data);
 */
         //Path to file with student data
-        String pathToFile = "F:\\studentInfo.txt";
+        String pathToFile = "src\\com\\files\\studentInfo.txt";
         //Create instance of the Pedin student
         StudentPedin studentPedin = new StudentPedin();
         //Get data from file with student data
