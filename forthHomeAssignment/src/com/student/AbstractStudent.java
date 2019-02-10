@@ -75,7 +75,7 @@ public abstract class AbstractStudent {
      * @return true if conditions are following, false otherwise
      */
     public boolean dataChecker(ArrayList<String> list) {
-        if (list.get(0).matches("[A-Za-z]+\\s[A-Za-z]+") && Integer.parseInt(list.get(1)) >= 17 && Integer.parseInt(list.get(1)) <= 25 && (list.get(2).toUpperCase().equals("MALE") | list.get(2).toUpperCase().equals("FEMALE"))){
+        if (list.get(0).matches("[A-Za-z]+\\s[A-Za-z]+") && Integer.parseInt(list.get(1)) >= 17 && Integer.parseInt(list.get(1)) <= 25 && (list.get(2).compareToIgnoreCase("male")==0 | list.get(2).compareToIgnoreCase("female")==0)){
             return true;
         }
         return false;
