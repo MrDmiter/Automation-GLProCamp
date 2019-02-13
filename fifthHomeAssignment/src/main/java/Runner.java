@@ -2,6 +2,7 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,7 +13,6 @@ import java.util.concurrent.TimeUnit;
 
 public class Runner {
     private WebDriver driver;
-    private Elements elements;
 
     /**
      * Set up method which configure settings before test
@@ -20,62 +20,56 @@ public class Runner {
     @Before
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-/**
- * Driver entity creation
- */
+
+        //  Driver entity creation
+
         driver = new ChromeDriver();
-/**
- * Set 5 sec wait for element to display
- */
+
+        //Set 5 sec wait for element to display
+
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-/**
- * Make browser window expanded
- */
-        driver.manage().window().maximize();
-        elements = new Elements();
+
+        // Make browser window expanded
+
+        // driver.manage().window().maximize();
+
     }
 
     /**
-     * Test which describes steps of our test
+     * Check the presence of the link in the search result
      */
+
     @Test
     public void googleTest() {
-/**
- * Open needed page
- */
+
+        //Open needed page
+
         driver.get("https://www.google.com");
-/**
- * Find search text field, type there query
- */
-        driver.findElement(elements.googleSearchField).sendKeys("Automation testing");
-/**
- * Imitation of the clicking on "Enter" button on keyboard
- */
-        driver.findElement(elements.googleSearchField).sendKeys(Keys.ENTER);
-        List<WebElement> list;
-/**
- * Var that shows that expected condition was reached
- */
-        boolean flag = false;
-/**
- * Get the list of the pages with search results
- */
-        List<WebElement> pages = driver.findElements(elements.googlePagesLinks);
-/**
- * Go through the each page looking for particular link, if link is found, click on it and verify that page is opened
- */
-        for (int i = 0; !flag; i++) {
-            pages.get(i).click();
-            list = driver.findElements(elements.searchResultLinks);
-            for (WebElement o : list
-            ) {
-                if (o.getAttribute("href").equals("https://www.qasymphony.com/blog/test-automation-automated-testing/")) {
-                    System.out.println("We are inside");
-                    o.click();
-                    flag = true;
-                    Assert.assertEquals(driver.getCurrentUrl(), "https://www.qasymphony.com/blog/test-automation-automated-testing/");
+
+        //Find search text field, type there query
+
+        driver.findElement(By.xpath("//input[@name='q']")).sendKeys("Automation testing");
+
+        //Imitation of the clicking on "Enter" button on keyboard
+
+        driver.findElement(By.xpath("//input[@name='q']")).sendKeys(Keys.ENTER);
+        List<WebElement> links;
+
+        //Var-flag that shows that expected condition was reached
+        boolean linkIsFind = false;
+        //Loop that searches for needed link within all search result pages
+        while (!linkIsFind) {
+            links = driver.findElements(By.xpath("//div[@class='r']/a"));
+            for (WebElement link : links) {
+                if (link.getAttribute("href").equalsIgnoreCase("https://medium.com/@briananderson2209/best-automation-testing-tools-for-2018-top-10-reviews-8a4a19f664d2")) {
+                    link.click();
+                    linkIsFind = true;
                     break;
                 }
+            }
+            if (!linkIsFind) {
+                WebElement clickNext = driver.findElement(By.xpath("//a[@id='pnnext']"));
+                clickNext.click();
             }
         }
     }

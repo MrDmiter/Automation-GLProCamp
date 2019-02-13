@@ -1,3 +1,5 @@
+package com.xpath.selenium;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -7,7 +9,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.concurrent.TimeUnit;
 
-public class Tests {
+public class seleniumTest {
     private WebDriver driver;
 
     /**
@@ -25,9 +27,9 @@ public class Tests {
      * Test which takes two prices form the page, minus one from another and show result in the console
      */
     @Test
-    public void comparePhonePrice() {
+    public void testComparePhonePrice() {
         driver.get("https://supsystic.com/example/comparison-example/");
-        String actualPrice = driver.findElement(By.xpath("//div[@data-el='table_col'][3]/descendant::div[@class='ptsRows ui-sortable']/child::div[last()]//span")).getAttribute("textContent");
+        String actualPrice = driver.findElement(By.xpath("//span[.='Samsung Galaxy S6']/ancestor::div[contains(@class, 'ptsElWithArea')]//div[@class='ptsCell']//span[contains(., '$')]")).getAttribute("textContent");
         System.out.println("Actual price is - " + actualPrice);
         String crossedPrice = driver.findElement(By.xpath("//div[@data-el='table_col'][3]/descendant::div[@class='ptsColFooter']/div/p/span")).getAttribute("textContent");
         System.out.println("Crossed price is - " + crossedPrice);
@@ -40,7 +42,7 @@ public class Tests {
      * Test which find particular letter in the table of unicodes and show it in the console
      */
     @Test
-    public void unicodeTest() {
+    public void testUnicode() {
         driver.get("https://unicode-table.com/ru/");
         String qLetter = driver.findElement(By.xpath("//li[contains(text(),'Q')]")).getText();
         System.out.println(qLetter);
